@@ -1,0 +1,1 @@
+pub fn text_as_binary(text: &str) -> 
