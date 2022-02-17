@@ -1,11 +1,11 @@
-pub fn encode(clear_text: &str) -> String {
+pub fn encode(clear_text: &str) {
     let binary = to_binary(clear_text);
-    let binary_groups = to_binary_groups(&binary);
+    let binary_groups = to_binary_groups(binary);
+    let prefixed_binary_groups = prefix_with_zeros(binary_groups);
     
-    for character in binary_groups {
-        println!("{}", &format!("00{}", character))
+    for element in prefixed_binary_groups {
+        println!("{}", element)
     }
-    binary
 }
 
 fn to_binary(text: &str) -> String {
@@ -19,26 +19,25 @@ fn to_binary(text: &str) -> String {
     name_in_binary
 }
 
-fn to_binary_groups<'a>(binary: &'a String) -> Vec<&'a str> {
+fn to_binary_groups<'a>(binary: String) -> Vec<String> {
     let mut binary_copy = binary.as_str();
 
-    let mut binary_groups: Vec<&str> = Vec::new();
+    let mut binary_groups: Vec<String> = Vec::new();
 
     while binary_copy.chars().count() > 0 {
         let group = &binary_copy[..6];
         binary_copy = &binary_copy[6..];
-        println!("{}", group);
-        binary_groups.push(group);
+        binary_groups.push(group.to_string());
     }
 
     binary_groups
 }
 
-fn prefix_with_zeros(binary_groups: Vec<&str>) -> Vec<&str> {
-    let mut prefixed_binary_groups: Vec<&str> = Vec::new();
+fn prefix_with_zeros(binary_groups: Vec<String>) -> Vec<String> {
+    let mut prefixed_binary_groups: Vec<String> = Vec::new();
 
     for character in binary_groups {
-        prefixed_binary_groups.push(&format!("00{}", character));
+        prefixed_binary_groups.push((&format!("00{}", character)).to_string());
         // println!("{}", &format!("00{}", character))
     }
 
