@@ -1,5 +1,5 @@
 
-pub fn encode(clear_text: &str) -> String {
+pub fn encode(clear_text: String) -> String {
     let binary = to_binary(clear_text);
     let binary_groups = to_binary_groups(binary);
     let prefixed_binary_groups = prefix_with_zeros(binary_groups);
@@ -10,8 +10,8 @@ pub fn encode(clear_text: &str) -> String {
 }
 
 
-fn to_binary(text: &str) -> String {
-    let name = text.to_string();
+fn to_binary(text: String) -> String {
+    let name = text;
     let mut name_in_binary = "".to_string();
 
     for character in name.clone().into_bytes() {
