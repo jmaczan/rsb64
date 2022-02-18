@@ -32,7 +32,6 @@ fn to_binary_groups(binary: String) -> (Vec<String>, usize) {
             binary_copy.len()
         };
         let group = if group_length != 6 {
-            println!("{}", group_length);
             if group_length == 2 {
                 last_byte_length = group_length;
                 format!("{}{}", &binary_copy[..group_length], "0000").to_string()
@@ -85,9 +84,6 @@ fn to_ascii_string(ascii_decimals: Vec<String>) -> String {
 }
 
 fn append_equals_signs(ascii_string: String, last_byte_length: usize) -> String {
-    let modulo = ascii_string.len() % 6;
-    println!("{}", ascii_string.len());
-    println!("{}", modulo);
     if last_byte_length == 0 {
         ascii_string
     } else if last_byte_length == 4 {
