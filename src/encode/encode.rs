@@ -13,9 +13,14 @@ fn to_binary(text: String) -> String {
     let mut name_in_binary = "".to_string();
 
     for character in name.clone().into_bytes() {
-        name_in_binary += &format!("0{:b}", character);
+        let mut binary_character = format!("0{:b}", character);
+        if binary_character == "0100000" {
+            binary_character = "00100000".to_string();
+        }
+        println!("binary_character: {}", binary_character);
+        name_in_binary += &binary_character;
     }
-
+    println!("to_binary: {}", name_in_binary);
     name_in_binary
 }
 
@@ -32,16 +37,19 @@ fn to_binary_groups(binary: String) -> (Vec<String>, usize) {
             binary_copy.len()
         };
         let group = if group_length != 6 {
-            if group_length == 2 {
-                last_byte_length = group_length;
-                format!("{}{}", &binary_copy[..group_length], "0000").to_string()
-            } else {
-                last_byte_length = group_length;
-                format!("{}{}", &binary_copy[..group_length], "00").to_string()
+            let mut zeros = "".to_string();
+            last_byte_length = group_length;
+
+            for _ in 0..(6 - group_length) {
+                let a = format!("{}{}", &zeros, "0");
+                zeros = a;
             }
+
+            format!("{}{}", &binary_copy[..group_length], zeros).to_string()
         } else {
             binary_copy[..group_length].to_string()
         };
+        println!("binary group: {}", group);
         binary_copy = &binary_copy[group_length..];
         binary_groups.push(group.to_string());
     }
@@ -53,6 +61,7 @@ fn prefix_with_zeros(binary_groups: Vec<String>) -> Vec<String> {
     let mut prefixed_binary_groups: Vec<String> = Vec::new();
 
     for character in binary_groups {
+        println!("prefixed with zeros: {}", (&format!("00{}", character)).to_string());
         prefixed_binary_groups.push((&format!("00{}", character)).to_string());
     }
 
@@ -63,7 +72,9 @@ fn to_ascii_decimal(binary_groups: Vec<String>) -> Vec<String> {
     let mut ascii_decimals: Vec<String> = Vec::new();
 
     for element in binary_groups {
-        ascii_decimals.push(u8::from_str_radix(&element, 2).unwrap().to_string());
+        let ascii_decimal: String = u8::from_str_radix(&element, 2).unwrap().to_string();
+        println!("ascii decimal: {}", ascii_decimal);
+        ascii_decimals.push(ascii_decimal);
     }
 
     ascii_decimals
