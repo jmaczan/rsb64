@@ -3,8 +3,9 @@ pub fn encode(clear_text: String) -> String {
     let binary_groups = to_binary_groups(binary);
     let prefixed_binary_groups = prefix_with_zeros(binary_groups);
     let ascii_decimals = to_ascii_decimal(prefixed_binary_groups);
-
-    to_ascii_string(ascii_decimals)
+    let ascii_string = to_ascii_string(ascii_decimals);
+    println!("{}", ascii_string.len());
+    ascii_string
 }
 
 fn to_binary(text: String) -> String {
@@ -25,7 +26,16 @@ fn to_binary_groups<'a>(binary: String) -> Vec<String> {
 
     while binary_copy.chars().count() > 0 {
         let group_length = if binary_copy.len() > 6 { 6 } else { binary_copy.len() };
-        let group = &binary_copy[..group_length];
+        let group = if group_length != 6 {
+            println!("{}", group_length);
+            if group_length == 2 {
+                format!("{}{}", &binary_copy[..group_length], "0000").to_string()
+            } else {
+                format!("{}{}", &binary_copy[..group_length], "00").to_string()
+            }
+        } else {
+            binary_copy[..group_length].to_string()
+        };
         binary_copy = &binary_copy[group_length..];
         binary_groups.push(group.to_string());
     }
