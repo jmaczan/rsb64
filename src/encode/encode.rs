@@ -1,11 +1,11 @@
 pub fn encode(clear_text: String) -> String {
     let binary = to_binary(clear_text);
-    let binary_groups = to_binary_groups(binary);
+    let (binary_groups, last_byte_length) = to_binary_groups(binary);
     let prefixed_binary_groups = prefix_with_zeros(binary_groups);
     let ascii_decimals = to_ascii_decimal(prefixed_binary_groups);
     let ascii_string = to_ascii_string(ascii_decimals);
-    println!("{}", ascii_string.len());
-    ascii_string
+
+    append_equals_signs(ascii_string, last_byte_length)
 }
 
 fn to_binary(text: String) -> String {
@@ -19,18 +19,25 @@ fn to_binary(text: String) -> String {
     name_in_binary
 }
 
-fn to_binary_groups<'a>(binary: String) -> Vec<String> {
+fn to_binary_groups(binary: String) -> (Vec<String>, usize) {
     let mut binary_copy = binary.as_str();
 
     let mut binary_groups: Vec<String> = Vec::new();
+    let mut last_byte_length: usize = 0;
 
     while binary_copy.chars().count() > 0 {
-        let group_length = if binary_copy.len() > 6 { 6 } else { binary_copy.len() };
+        let group_length = if binary_copy.len() > 6 {
+            6
+        } else {
+            binary_copy.len()
+        };
         let group = if group_length != 6 {
             println!("{}", group_length);
             if group_length == 2 {
+                last_byte_length = group_length;
                 format!("{}{}", &binary_copy[..group_length], "0000").to_string()
             } else {
+                last_byte_length = group_length;
                 format!("{}{}", &binary_copy[..group_length], "00").to_string()
             }
         } else {
@@ -40,7 +47,7 @@ fn to_binary_groups<'a>(binary: String) -> Vec<String> {
         binary_groups.push(group.to_string());
     }
 
-    binary_groups
+    (binary_groups, last_byte_length)
 }
 
 fn prefix_with_zeros(binary_groups: Vec<String>) -> Vec<String> {
@@ -75,4 +82,17 @@ fn to_ascii_string(ascii_decimals: Vec<String>) -> String {
     }
 
     ascii_string.to_string()
+}
+
+fn append_equals_signs(ascii_string: String, last_byte_length: usize) -> String {
+    let modulo = ascii_string.len() % 6;
+    println!("{}", ascii_string.len());
+    println!("{}", modulo);
+    if last_byte_length == 0 {
+        ascii_string
+    } else if last_byte_length == 4 {
+        format!("{}{}", &ascii_string, "=").to_string()
+    } else {
+        format!("{}{}", &ascii_string, "==").to_string()
+    }
 }
