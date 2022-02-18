@@ -1,14 +1,11 @@
-
 pub fn encode(clear_text: String) -> String {
     let binary = to_binary(clear_text);
     let binary_groups = to_binary_groups(binary);
     let prefixed_binary_groups = prefix_with_zeros(binary_groups);
     let ascii_decimals = to_ascii_decimal(prefixed_binary_groups);
-    let encoded_text = to_ascii_string(ascii_decimals);
 
-    encoded_text
+    to_ascii_string(ascii_decimals)
 }
-
 
 fn to_binary(text: String) -> String {
     let name = text;
@@ -27,8 +24,9 @@ fn to_binary_groups<'a>(binary: String) -> Vec<String> {
     let mut binary_groups: Vec<String> = Vec::new();
 
     while binary_copy.chars().count() > 0 {
-        let group = &binary_copy[..6];
-        binary_copy = &binary_copy[6..];
+        let group_length = if binary_copy.len() > 6 { 6 } else { binary_copy.len() };
+        let group = &binary_copy[..group_length];
+        binary_copy = &binary_copy[group_length..];
         binary_groups.push(group.to_string());
     }
 
@@ -59,7 +57,11 @@ fn to_ascii_string(ascii_decimals: Vec<String>) -> String {
     let mut ascii_string = "".to_string();
 
     for decimal in ascii_decimals {
-        ascii_string += &"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".chars().nth(decimal.parse::<usize>().unwrap()).unwrap().to_string();
+        ascii_string += &"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+            .chars()
+            .nth(decimal.parse::<usize>().unwrap())
+            .unwrap()
+            .to_string();
     }
 
     ascii_string.to_string()
