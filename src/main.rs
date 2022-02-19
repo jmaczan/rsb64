@@ -23,7 +23,7 @@ fn main() {
     })
     .expect("Something went wrong reading the file");
 
-    let text_to_encode = contents.trim().to_string();
+    let text_to_encode = contents.to_string();
 
     println!("Clear text: {}", text_to_encode);
     println!("Encoded text: {}", encode::encode::encode(text_to_encode));
