@@ -14,6 +14,21 @@ fn to_binary(text: String) -> String {
 
     for character in name.clone().into_bytes() {
         let mut binary_character = format!("0{:b}", character);
+
+        let binary_length = binary_character.len();
+
+        binary_character = if binary_length != 8 {
+            let mut zeros = "".to_string();
+
+            for _ in 0..(8 - binary_length) {
+                zeros = format!("{}{}", &zeros, "0");
+            }
+
+            format!("{}{}", zeros, binary_character)
+        } else {
+            binary_character
+        };
+
         if binary_character == "0100000" {
             binary_character = "00100000".to_string();
         }
@@ -41,8 +56,7 @@ fn to_binary_groups(binary: String) -> (Vec<String>, usize) {
             last_byte_length = group_length;
 
             for _ in 0..(6 - group_length) {
-                let a = format!("{}{}", &zeros, "0");
-                zeros = a;
+                zeros = format!("{}{}", &zeros, "0");
             }
 
             format!("{}{}", &binary_copy[..group_length], zeros).to_string()
