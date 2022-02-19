@@ -1,3 +1,5 @@
+use super::prefix_with_zeros::prefix_with_zeros;
+
 pub fn to_binary(text: String) -> String {
     text.clone()
         .into_bytes()
@@ -12,19 +14,7 @@ pub fn to_binary(text: String) -> String {
 fn to_binary_character(character: u8) -> String {
     let binary_character = format!("0{:b}", character);
 
-    let binary_length = binary_character.len();
-
-    if binary_length != 8 {
-        let mut zeros = "".to_string();
-
-        for _ in 0..(8 - binary_length) {
-            zeros = format!("{}{}", &zeros, "0");
-        }
-
-        format!("{}{}", zeros, binary_character)
-    } else {
-        binary_character
-    }
+    prefix_with_zeros(binary_character, 8)
 }
 
 fn concatenate_items(name_in_binary: String, binary_character: String) -> String {
