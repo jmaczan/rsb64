@@ -1,9 +1,9 @@
-use super::to_binary::to_binary;
-use super::to_binary_groups::to_binary_groups;
+use super::append_equals_signs::append_equals_signs;
 use super::prefix_with_zeros::prefix_with_zeros;
 use super::to_ascii_decimal::to_ascii_decimal;
 use super::to_ascii_string::to_ascii_string;
-use super::append_equals_signs::append_equals_signs;
+use super::to_binary::to_binary;
+use super::to_binary_groups::to_binary_groups;
 
 pub fn encode(clear_text: String) -> String {
     let binary = to_binary(clear_text);

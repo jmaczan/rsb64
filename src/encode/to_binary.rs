@@ -19,9 +19,6 @@ pub fn to_binary(text: String) -> String {
             binary_character
         };
 
-        if binary_character == "0100000" {
-            binary_character = "00100000".to_string();
-        }
         println!("binary_character: {}", binary_character);
         name_in_binary += &binary_character;
     }
