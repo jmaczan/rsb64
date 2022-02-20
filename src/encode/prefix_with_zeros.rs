@@ -1,3 +1,5 @@
+use super::constants::ZERO_STRING;
+
 pub fn prefix_all_with_zeros(strings_to_prefix: Vec<String>, desired_length: usize) -> Vec<String> {
     strings_to_prefix
         .into_iter()
@@ -12,7 +14,7 @@ pub fn prefix_with_zeros(string_to_prefix: String, desired_length: usize) -> Str
         let mut zeros = "".to_string();
 
         for _ in 0..(desired_length - length) {
-            zeros = format!("{}{}", &zeros, "0");
+            zeros = format!("{}{}", &zeros, ZERO_STRING);
         }
 
         format!("{}{}", zeros, string_to_prefix)

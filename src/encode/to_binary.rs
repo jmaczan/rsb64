@@ -1,4 +1,5 @@
 use super::prefix_with_zeros::prefix_with_zeros;
+use super::constants;
 
 pub fn to_binary(text: String) -> String {
     text.clone()
@@ -14,7 +15,7 @@ pub fn to_binary(text: String) -> String {
 fn to_binary_character(character: u8) -> String {
     let binary_character = format!("0{:b}", character);
 
-    prefix_with_zeros(binary_character, 8)
+    prefix_with_zeros(binary_character, constants::BINARY_GROUPS_DESIRED_LENGTH)
 }
 
 fn concatenate_items(name_in_binary: String, binary_character: String) -> String {
