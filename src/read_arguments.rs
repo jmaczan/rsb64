@@ -7,7 +7,9 @@ use super::constants;
 pub fn read_arguments() -> (String, constants::Action) {
     let arguments: Vec<String> = env::args().collect();
 
-    if arguments.len() < 2 || arguments.len() > 3 {
+    if arguments.len() < constants::MIN_ARGUMENTS_LENGTH
+        || arguments.len() > constants::MAX_ARGUMENTS_LENGTH
+    {
         println!("Please run rsb64 in following way:\n");
         println!("To encode: ./rsb64 file_name");
         println!("To decode: ./rsb64 -decode file_name");
@@ -15,7 +17,7 @@ pub fn read_arguments() -> (String, constants::Action) {
         exit(1);
     }
 
-    let action = if arguments.len() == 3 {
+    let action = if arguments.len() == constants::MAX_ARGUMENTS_LENGTH {
         constants::Action::Decode
     } else {
         constants::Action::Encode
