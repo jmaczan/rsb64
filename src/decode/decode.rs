@@ -1,6 +1,7 @@
-use crate::decode::to_binary_groups::to_binary_groups;
 use super::to_decimal_groups::to_decimal_groups;
 use super::to_string_groups::to_string_groups;
+use crate::decode::remove_zeros_prefixes::remove_zeros_prefixes;
+use crate::decode::to_binary_groups::to_binary_groups;
 
 pub fn decode(clear_text: String) -> String {
     let string_groups = to_string_groups(clear_text);
@@ -19,6 +20,12 @@ pub fn decode(clear_text: String) -> String {
 
     for character in binary_groups.clone().into_iter() {
         println!("binary character: {}", character);
+    }
+
+    let unprefixed_binary_groups = remove_zeros_prefixes(binary_groups);
+
+    for character in unprefixed_binary_groups.clone().into_iter() {
+        println!("unprefixed binary character: {}", character);
     }
 
     "test".to_string()
