@@ -7,6 +7,8 @@ Base64 encoder and decoder written in Rust.
 cargo build --bin rsb64 --release
 ```
 
+Output binary file is available under `./target/release/rsb64`.
+
 ## run
 
 ### encode
