@@ -28,7 +28,7 @@ In order to encode or decode, `rsb64` reads content from a file.
 ## License
 GPL2 for non-commercial use.
 
-For commercial usage, [please contact me via email](mailto:jedrzejpawel@maczan.pl).
+For license allowing usage in commercial projects, [please contact me via email](mailto:jedrzejpawel@maczan.pl).
 
 ## Author
 
