@@ -1,3 +1,4 @@
+use crate::common::constants::BINARY_GROUPS_DESIRED_LENGTH;
 use crate::common::to_binary_character::to_binary_character;
 
 pub fn to_binary_groups(decimal_groups: Vec<usize>) -> Vec<String> {
@@ -23,13 +24,13 @@ pub fn split_binary_string_to_binary_groups(binary_string: String) -> Vec<String
 
     binary_groups
         .into_iter()
-        .filter(|group| group.len() == 8)
+        .filter(|group| group.len() == BINARY_GROUPS_DESIRED_LENGTH)
         .collect()
 }
 
 fn get_group_length(binary_string: &str) -> usize {
-    if binary_string.len() > 8 {
-        8
+    if binary_string.len() > BINARY_GROUPS_DESIRED_LENGTH {
+        BINARY_GROUPS_DESIRED_LENGTH
     } else {
         binary_string.len()
     }

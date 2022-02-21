@@ -1,3 +1,4 @@
+use crate::common::constants::ASCII_DECIMAL_RADIX;
 use crate::decode::concatenate_binary_groups::concatenate_binary_groups;
 
 pub fn binary_to_ascii(binary_groups: Vec<String>) -> String {
@@ -5,7 +6,7 @@ pub fn binary_to_ascii(binary_groups: Vec<String>) -> String {
         binary_groups
             .into_iter()
             .map(|group| {
-                char::from_u32(u32::from_str_radix(&group, 2).unwrap())
+                char::from_u32(u32::from_str_radix(&group, ASCII_DECIMAL_RADIX).unwrap())
                     .unwrap()
                     .to_string()
             })

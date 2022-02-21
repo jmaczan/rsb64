@@ -1,3 +1,6 @@
+use crate::common::constants::BINARY_GROUPS_DESIRED_LENGTH;
+use crate::common::constants::ZEROS_PREFIX_LENGTH;
+
 pub fn remove_zeros_prefixes(strings_to_prefix: Vec<String>) -> Vec<String> {
     strings_to_prefix
         .into_iter()
@@ -6,5 +9,5 @@ pub fn remove_zeros_prefixes(strings_to_prefix: Vec<String>) -> Vec<String> {
 }
 
 fn remove_zeros_prefix(string: String) -> String {
-    string[2..8].to_string()
+    string[ZEROS_PREFIX_LENGTH..BINARY_GROUPS_DESIRED_LENGTH].to_string()
 }
