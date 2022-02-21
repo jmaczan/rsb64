@@ -1,11 +1,4 @@
-use crate::common::constants;
-
-pub fn prefix_all_with_zeros(strings_to_prefix: Vec<String>, desired_length: usize) -> Vec<String> {
-    strings_to_prefix
-        .into_iter()
-        .map(|string| prefix_with_zeros(string, desired_length))
-        .collect::<Vec<String>>()
-}
+use super::constants;
 
 pub fn prefix_with_zeros(string_to_prefix: String, desired_length: usize) -> String {
     let length = string_to_prefix.len();

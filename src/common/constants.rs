@@ -5,4 +5,5 @@ pub const SINGLE_EQUALS_SIGN: &str = "=";
 pub const DOUBLE_EQUALS_SIGN: &str = "==";
 pub const ASCII_DECIMAL_RADIX: u32 = 2;
 pub const ZERO_STRING: &str = "0";
-pub const ALLOWED_ASCII_CHARACTERS: &str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+pub const ALLOWED_ASCII_CHARACTERS: &str =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";

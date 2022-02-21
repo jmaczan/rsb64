@@ -3,6 +3,7 @@ mod read_arguments;
 
 pub mod decode;
 pub mod encode;
+pub mod common;
 
 fn main() {
     let (file_content, action) = read_arguments::read_arguments();

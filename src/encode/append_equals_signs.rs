@@ -1,4 +1,4 @@
-use super::constants;
+use crate::common::constants;
 
 pub fn append_equals_signs(ascii_string: String, last_byte_length: usize) -> String {
     if last_byte_length == constants::BINARY_GROUPS_INITIAL_LENGTH {

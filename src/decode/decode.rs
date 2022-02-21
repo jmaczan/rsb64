@@ -1,5 +1,4 @@
-use super::constants::ALLOWED_ASCII_CHARACTERS;
-use super::constants::SINGLE_EQUALS_SIGN;
+use crate::common::constants;
 
 pub fn decode(clear_text: String) -> String {
     let characters = clear_text
@@ -13,9 +12,9 @@ pub fn decode(clear_text: String) -> String {
 
     let decimal_characters = characters
         .into_iter()
-        .filter(|character| character != &SINGLE_EQUALS_SIGN)
+        .filter(|character| character != &constants::SINGLE_EQUALS_SIGN)
         .map(|character| {
-            ALLOWED_ASCII_CHARACTERS
+            constants::ALLOWED_ASCII_CHARACTERS
                 .chars()
                 .position(|allowed_character| {
                     allowed_character == character.chars().nth(0).unwrap()

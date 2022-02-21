@@ -1,8 +1,7 @@
+mod append_equals_signs;
 pub mod encode;
-mod to_binary;
-mod to_binary_groups;
 mod prefix_with_zeros;
 mod to_ascii_decimals;
 mod to_ascii_string;
-mod append_equals_signs;
-mod constants;
+mod to_binary;
+mod to_binary_groups;

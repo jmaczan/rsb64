@@ -4,7 +4,7 @@ use super::to_ascii_decimals::to_ascii_decimals;
 use super::to_ascii_string::to_ascii_string;
 use super::to_binary::to_binary;
 use super::to_binary_groups::to_binary_groups;
-use super::constants::BINARY_GROUPS_DESIRED_LENGTH;
+use crate::common::constants::BINARY_GROUPS_DESIRED_LENGTH;
 
 pub fn encode(clear_text: String) -> String {
     let binary_string = to_binary(clear_text);

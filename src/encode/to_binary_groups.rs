@@ -1,4 +1,4 @@
-use super::constants;
+use crate::common::constants;
 
 pub fn to_binary_groups(binary_string: String) -> (Vec<String>, usize) {
     let mut binary_string_copy = binary_string.as_str();

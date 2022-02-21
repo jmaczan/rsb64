@@ -1,4 +1,4 @@
-use super::constants::ALLOWED_ASCII_CHARACTERS;
+use crate::common::constants::ALLOWED_ASCII_CHARACTERS;
 
 pub fn to_ascii_string(ascii_decimals: Vec<String>) -> String {
     let mut ascii_decimals_copy: Vec<String> = vec!["".to_string()];
