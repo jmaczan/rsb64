@@ -1,3 +1,4 @@
+use crate::decode::concatenate_binary_groups::concatenate_binary_groups;
 use super::to_decimal_groups::to_decimal_groups;
 use super::to_string_groups::to_string_groups;
 use crate::decode::remove_zeros_prefixes::remove_zeros_prefixes;
@@ -27,6 +28,9 @@ pub fn decode(clear_text: String) -> String {
     for character in unprefixed_binary_groups.clone().into_iter() {
         println!("unprefixed binary character: {}", character);
     }
+
+    let concatenated_binary_group = concatenate_binary_groups(unprefixed_binary_groups);
+    println!("concatenated_binary_group: {}", concatenated_binary_group);
 
     "test".to_string()
 }

@@ -1,3 +1,4 @@
+use crate::common::concatenate_items::concatenate_items;
 use crate::common::to_binary_character::to_binary_character;
 
 pub fn to_binary(text: String) -> String {
@@ -9,8 +10,4 @@ pub fn to_binary(text: String) -> String {
         .into_iter()
         .reduce(concatenate_items)
         .unwrap()
-}
-
-fn concatenate_items(name_in_binary: String, binary_character: String) -> String {
-    format!("{}{}", name_in_binary, binary_character)
 }

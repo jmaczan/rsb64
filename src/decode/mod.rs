@@ -1,3 +1,4 @@
+mod concatenate_binary_groups;
 pub mod decode;
 mod remove_zeros_prefixes;
 mod to_binary_groups;
