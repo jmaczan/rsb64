@@ -1,34 +1,25 @@
-use crate::common::constants;
+use crate::decode::to_binary_groups::to_binary_groups;
+use super::to_decimal_groups::to_decimal_groups;
+use super::to_string_groups::to_string_groups;
 
 pub fn decode(clear_text: String) -> String {
-    let characters = clear_text
-        .split_terminator("")
-        .skip(1)
-        .collect::<Vec<&str>>();
+    let string_groups = to_string_groups(clear_text);
 
-    for character in (&characters).into_iter() {
+    for character in (&string_groups).into_iter() {
         println!("character: {}", character);
     }
 
-    let decimal_characters = characters
-        .into_iter()
-        .filter(|character| character != &constants::SINGLE_EQUALS_SIGN)
-        .map(|character| {
-            constants::ALLOWED_ASCII_CHARACTERS
-                .chars()
-                .position(|allowed_character| {
-                    allowed_character == character.chars().nth(0).unwrap()
-                })
-                .unwrap()
-        });
+    let decimal_groups = to_decimal_groups(string_groups);
 
-    for character in decimal_characters.clone().into_iter() {
+    for character in decimal_groups.clone().into_iter() {
         println!("decimal character: {}", character);
     }
 
-    for character in decimal_characters.clone().into_iter() {
-        println!("binary character: {}", format!("0{:b}", character));
+    let binary_groups = to_binary_groups(decimal_groups);
+
+    for character in binary_groups.clone().into_iter() {
+        println!("binary character: {}", character);
     }
 
-    clear_text
+    "test".to_string()
 }
