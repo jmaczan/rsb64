@@ -1,3 +1,5 @@
+<p align="center"><img width="150" src="rsb64logo.png" alt="rsb64 logo"></p>
+
 # `rsb64`
 
 Base64 encoder and decoder written in Rust.
